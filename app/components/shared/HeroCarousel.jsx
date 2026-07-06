@@ -46,15 +46,17 @@ export default function HeroCarousel({ featureTags = [], images }) {
   const animateSlides = useCallback((index) => {
     const s = slidesRef.current;
     if (!s?.length || !s[index]) return;
-    if (isAnimatingRef.current) s.forEach((sl) => { if (sl) gsap.killTweensOf(sl); });
-    isAnimatingRef.current = true;
-    s.forEach((slide, i) => {
-      if (!slide) return;
-      if (i === index) {
-        gsap.to(slide, { opacity: 1, scale: 1, zIndex: 10, duration: 0.6, ease: "power3.out", onComplete: () => { isAnimatingRef.current = false; } });
-      } else {
-        gsap.to(slide, { opacity: 0, scale: 0.97, zIndex: 0, duration: 0.5, ease: "power2.inOut" });
-      }
+    requestAnimationFrame(() => {
+      if (isAnimatingRef.current) s.forEach((sl) => { if (sl) gsap.killTweensOf(sl); });
+      isAnimatingRef.current = true;
+      s.forEach((slide, i) => {
+        if (!slide) return;
+        if (i === index) {
+          gsap.to(slide, { opacity: 1, scale: 1, zIndex: 10, duration: 0.6, ease: "power3.out", onComplete: () => { isAnimatingRef.current = false; } });
+        } else {
+          gsap.to(slide, { opacity: 0, scale: 0.97, zIndex: 0, duration: 0.5, ease: "power2.inOut" });
+        }
+      });
     });
   }, []);
 
