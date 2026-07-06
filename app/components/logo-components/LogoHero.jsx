@@ -8,12 +8,12 @@ import HeroCarousel from "@/app/components/shared/HeroCarousel";
 
 const featureTags = ["Brand Identity", "Logo Systems", "Brand Guidelines", "Print Ready"];
 
-const logoImages = [
-  "https://images.unsplash.com/photo-1636622433525-127afdf3662d?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+const logoSlides = [
+  { src: "https://images.unsplash.com/photo-1636622433525-127afdf3662d?auto=format&fit=crop&w=800&q=90", title: "Brand Identity", category: "Design Strategy" },
+  { src: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=90", title: "Logo Design", category: "Visual Identity" },
+  { src: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=90", title: "Design Systems", category: "Brand Guidelines" },
+  { src: "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=90", title: "Brand Mockups", category: "Print Ready" },
+  { src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=90", title: "Creative Direction", category: "Identity Design" },
 ];
 
 export default function LogoHero() {
@@ -69,7 +69,7 @@ export default function LogoHero() {
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(45,232,176,0.1) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16 pt-28 pb-10 lg:pt-36 lg:pb-20">
         {/* Left: Text */}
         <div className="w-full lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
@@ -107,7 +107,7 @@ export default function LogoHero() {
         </div>
 
         {/* Right: Branding Carousel */}
-        <HeroCarousel featureTags={featureTags} images={logoImages} />
+        <HeroCarousel featureTags={featureTags} images={logoSlides} />
       </div>
 
       <div

@@ -89,7 +89,7 @@ export default function LogoPricing() {
     linear-gradient(180deg, #000000 0%, #000000 35%, #0F7C6E 50%, #000000 65%, #000000 100%)
   `
             }}
-            className={`flex flex-col items-center  py-20 ${urbanist.className}`}
+            className={`flex flex-col items-center py-20 px-4 sm:px-6 ${urbanist.className}`}
         >
             <div className="text-center mb-12">
                 <div className="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full border border-white/10 bg-white/5">

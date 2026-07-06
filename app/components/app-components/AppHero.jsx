@@ -8,12 +8,12 @@ import HeroCarousel from "@/app/components/shared/HeroCarousel";
 
 const featureTags = ["React Native", "Flutter", "iOS & Android", "App Store Ready"];
 
-const appImages = [
-  "/images/service_images/appdev.png",
-  "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=80",
+const appSlides = [
+  { src: "/images/service_images/appdev.png", title: "App Development", category: "Our Expertise" },
+  { src: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=90", title: "React Native", category: "Cross-Platform" },
+  { src: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?auto=format&fit=crop&w=800&q=90", title: "iOS & Android", category: "Native Apps" },
+  { src: "https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?auto=format&fit=crop&w=800&q=90", title: "App Store Launch", category: "End-to-End Delivery" },
+  { src: "https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=800&q=90", title: "Seamless UI", category: "User Experience" },
 ];
 
 export default function AppHero() {
@@ -69,7 +69,7 @@ export default function AppHero() {
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(45,232,176,0.1) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16 pt-28 pb-10 lg:pt-36 lg:pb-20">
         {/* Left: Text */}
         <div className="w-full lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
@@ -107,7 +107,7 @@ export default function AppHero() {
         </div>
 
         {/* Right: App Carousel */}
-        <HeroCarousel featureTags={featureTags} images={appImages} />
+        <HeroCarousel featureTags={featureTags} images={appSlides} />
       </div>
 
       <div

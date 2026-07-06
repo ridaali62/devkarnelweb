@@ -8,12 +8,12 @@ import HeroCarousel from "@/app/components/shared/HeroCarousel";
 
 const featureTags = ["Figma Expert", "User Research", "Design Systems", "Prototyping"];
 
-const uiuxImages = [
-  "/images/service_images/uiux.png",
-  "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=80",
+const uiuxSlides = [
+  { src: "/images/service_images/uiux.png", title: "UI / UX Design", category: "Our Expertise" },
+  { src: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=90", title: "Figma Design", category: "Design Systems" },
+  { src: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=90", title: "Wireframing", category: "User Research" },
+  { src: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=90", title: "Prototype Testing", category: "Interactive Flows" },
+  { src: "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=90", title: "Visual Design", category: "Pixel Perfect" },
 ];
 
 export default function UIUXHero() {
@@ -69,7 +69,7 @@ export default function UIUXHero() {
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(45,232,176,0.1) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16 pt-28 pb-10 lg:pt-36 lg:pb-20">
         {/* Left: Text */}
         <div className="w-full lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
@@ -107,7 +107,7 @@ export default function UIUXHero() {
         </div>
 
         {/* Right: Design Carousel */}
-        <HeroCarousel featureTags={featureTags} images={uiuxImages} />
+        <HeroCarousel featureTags={featureTags} images={uiuxSlides} />
       </div>
 
       <div

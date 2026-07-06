@@ -8,12 +8,12 @@ import HeroCarousel from "@/app/components/shared/HeroCarousel";
 
 const featureTags = ["On-Page SEO", "Technical SEO", "Link Building", "Local SEO"];
 
-const seoImages = [
-  "/images/service_images/seo1.png",
-  "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+const seoSlides = [
+  { src: "/images/service_images/seo1.png", title: "SEO Optimization", category: "Our Expertise" },
+  { src: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=90", title: "Keyword Rankings", category: "Technical SEO" },
+  { src: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=90", title: "Traffic Growth", category: "Analytics" },
+  { src: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=90", title: "Content Strategy", category: "On-Page SEO" },
+  { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=90", title: "Performance Metrics", category: "Data-Driven" },
 ];
 
 export default function SEOHero() {
@@ -69,7 +69,7 @@ export default function SEOHero() {
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(45,232,176,0.1) 0%, transparent 70%)" }}
       />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-28 pb-16 lg:pt-36 lg:pb-20">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-6 sm:gap-10 lg:gap-16 pt-28 pb-10 lg:pt-36 lg:pb-20">
         {/* Left: Text */}
         <div className="w-full lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
@@ -107,7 +107,7 @@ export default function SEOHero() {
         </div>
 
         {/* Right: SEO Carousel */}
-        <HeroCarousel featureTags={featureTags} images={seoImages} />
+        <HeroCarousel featureTags={featureTags} images={seoSlides} />
       </div>
 
       <div

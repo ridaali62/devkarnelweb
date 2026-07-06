@@ -113,9 +113,9 @@ const VideoTestimonials = () => {
                 </div>
 
                 {/* Video Info Overlay */}
-                <div className="absolute bottom-8 left-8 text-left">
-                  <h3 className="text-white text-2xl font-bold mb-1">Devskarnel Client Testimonials</h3>
-                  <p className="text-white/60 text-sm">Watch the success stories</p>
+                <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 text-left">
+                  <h3 className="text-white text-base sm:text-xl md:text-2xl font-bold mb-1">Devskarnel Client Testimonials</h3>
+                  <p className="text-white/60 text-xs sm:text-sm">Watch the success stories</p>
                 </div>
               </>
             )}
