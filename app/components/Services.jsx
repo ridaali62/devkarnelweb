@@ -10,6 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 
 const servicesData = [
   {
+<<<<<<< Updated upstream
+=======
+    number: "02",
+>>>>>>> Stashed changes
     title: "App Development",
     desc: "Building high-performance native and cross-platform mobile solutions.",
     colSpan: "lg:col-span-1",
@@ -17,6 +21,10 @@ const servicesData = [
     href: "/services/app-development",
   },
   {
+<<<<<<< Updated upstream
+=======
+    number: "01",
+>>>>>>> Stashed changes
     title: "Web Development",
     desc: "Scalable, lightning-fast web applications built with modern frameworks.",
     colSpan: "lg:col-span-2",
@@ -99,6 +107,7 @@ export default function Services() {
           <p className="text-white/40 text-base sm:text-lg max-w-2xl mx-auto">End-to-end digital solutions to take your business from concept to launch.</p>
         </div>
 
+<<<<<<< Updated upstream
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {servicesData.map((service, index) => (
@@ -106,6 +115,16 @@ export default function Services() {
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}
               className={service.colSpan}
+=======
+        {/* Row 1: Wide Web Dev (01) first, App Dev (02) second */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
+
+          {/* Wide card (01 Web Dev) */}
+          {wideCard && (
+            <div
+              ref={(el) => (cardsRef.current[0] = el)}
+              className="md:col-span-1 lg:col-span-2"
+>>>>>>> Stashed changes
             >
               <Link
                 href={service.href}
@@ -147,6 +166,21 @@ export default function Services() {
                 <div className="absolute top-0 right-0 w-40 h-40 bg-[#2de8b0]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               </Link>
             </div>
+<<<<<<< Updated upstream
+=======
+          )}
+
+          {/* App Dev (02) */}
+          {regularCards[0] && (
+            <ServiceCard service={regularCards[0]} index={1} refCb={(el) => (cardsRef.current[1] = el)} />
+          )}
+        </div>
+
+        {/* Row 2: 3 regular cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {regularCards.slice(1).map((service, i) => (
+            <ServiceCard key={service.number} service={service} index={i + 2} refCb={(el) => (cardsRef.current[i + 2] = el)} />
+>>>>>>> Stashed changes
           ))}
         </div>
       </div>
