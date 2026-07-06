@@ -37,10 +37,12 @@ function Checkbox({ label, checked, onToggle }) {
   );
 }
 
-function Field({ label, children, htmlFor }) {
+function Field({ label, children, htmlFor, required }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-[0.7rem] font-semibold text-white/40 tracking-wide uppercase">{label}</label>
+      <label htmlFor={htmlFor} className="text-[0.7rem] font-semibold text-white/40 tracking-wide uppercase">
+        {label}{required && <span className="text-red-400 ml-0.5">*</span>}
+      </label>
       {children}
     </div>
   );
@@ -77,10 +79,10 @@ function ContactForm() {
   return (
     <form className="flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Field label="Name" htmlFor="name">
+        <Field label="Name" htmlFor="name" required>
           <input id="name" name="name" type="text" placeholder="Your name" value={values.name} onChange={handle} className={inputCls} required />
         </Field>
-        <Field label="Email" htmlFor="email">
+        <Field label="Email" htmlFor="email" required>
           <input id="email" name="email" type="email" placeholder="you@company.com" value={values.email} onChange={handle} className={inputCls} required />
         </Field>
       </div>
@@ -101,7 +103,7 @@ function ContactForm() {
         </div>
       </Field>
 
-      <Field label="How can we help?" htmlFor="message">
+      <Field label="How can we help?" htmlFor="message" required>
         <textarea id="message" name="message" rows={4} placeholder="Tell us about the project..." value={values.message} onChange={handle} className={`${inputCls} resize-none`} required />
       </Field>
 
