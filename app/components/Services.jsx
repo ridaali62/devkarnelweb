@@ -7,8 +7,26 @@ import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const servicesData = [
+const wideCardData = {
+  number: "01",
+  title: "Web Development",
+  desc: "Scalable, lightning-fast websites and web apps built with Next.js — designed for SEO, performance, and conversion from day one.",
+  cta: "Start Your Project",
+  href: "/services/website-development",
+  badge: "Most Popular",
+  icon: (
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M8 21h8M12 17v4" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  ),
+  gradient: "from-[#2de8b0]/10 via-transparent to-transparent",
+  accentColor: "#2de8b0",
+};
+
+const regularCardsData = [
   {
+    number: "02",
     title: "App Development",
     desc: "High-performance native and cross-platform mobile apps — React Native, Flutter, iOS & Android — built to engage users and scale with your business.",
     cta: "Build Your App",
@@ -21,22 +39,6 @@ const servicesData = [
     ),
     gradient: "from-violet-500/10 via-transparent to-transparent",
     accentColor: "#a78bfa",
-  },
-  {
-    title: "Web Development",
-    desc: "Scalable, lightning-fast websites and web apps built with Next.js — designed for SEO, performance, and conversion from day one.",
-    cta: "Start Your Project",
-    href: "/services/website-development",
-    badge: "Most Popular",
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <rect x="2" y="3" width="20" height="14" rx="2" strokeWidth="1.8" strokeLinecap="round" />
-        <path d="M8 21h8M12 17v4" strokeWidth="1.8" strokeLinecap="round" />
-      </svg>
-    ),
-    gradient: "from-[#2de8b0]/10 via-transparent to-transparent",
-    accentColor: "#2de8b0",
-    wide: true,
   },
   {
     number: "03",
@@ -82,8 +84,46 @@ const servicesData = [
   },
 ];
 
+function ServiceCard({ service, refCb }) {
+  return (
+    <Link
+      ref={refCb}
+      href={service.href}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/8 hover:border-white/20 bg-[#060d0b] transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] min-h-52 sm:min-h-64"
+    >
+      <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-80 group-hover:opacity-100 transition-opacity duration-500`} />
+
+      <span className="absolute bottom-2 right-3 text-[100px] font-black text-white/[0.025] leading-none pointer-events-none select-none">
+        {service.number}
+      </span>
+
+      <div className="relative z-10 flex flex-col justify-between p-6 sm:p-7 h-full">
+        <div
+          className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shrink-0"
+          style={{ background: `${service.accentColor}18`, color: service.accentColor }}
+        >
+          {service.icon}
+        </div>
+
+        <div>
+          <h3 className="text-lg sm:text-xl font-bold text-white mb-2 tracking-tight">{service.title}</h3>
+          <p className="text-white/40 text-sm leading-relaxed mb-4">{service.desc}</p>
+
+          <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+            <span className="text-xs font-semibold" style={{ color: service.accentColor }}>{service.cta}</span>
+            <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" style={{ color: service.accentColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function Services() {
   const sectionRef = useRef(null);
+  const wideRef = useRef(null);
   const cardsRef = useRef([]);
   const headerRef = useRef(null);
   const bottomRef = useRef(null);
@@ -94,6 +134,11 @@ export default function Services() {
         { opacity: 0, y: 24 },
         { opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
           scrollTrigger: { trigger: headerRef.current, start: "top 85%", once: true } }
+      );
+      gsap.fromTo(wideRef.current,
+        { opacity: 0, y: 40 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out",
+          scrollTrigger: { trigger: wideRef.current, start: "top 88%", once: true } }
       );
       cardsRef.current.forEach((card, i) => {
         if (!card) return;
@@ -111,9 +156,6 @@ export default function Services() {
     }, sectionRef);
     return () => ctx.revert();
   }, []);
-
-  const regularCards = servicesData.filter((s) => !s.wide);
-  const wideCard = servicesData.find((s) => s.wide);
 
   return (
     <section
@@ -140,50 +182,62 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {servicesData.map((service, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className={service.colSpan}
-            >
-              <Link href={wideCard.href} className="group relative flex flex-col sm:flex-row gap-0 overflow-hidden rounded-2xl border border-white/8 hover:border-[#2de8b0]/30 bg-[#060d0b] transition-all duration-500 hover:shadow-[0_0_50px_rgba(45,232,176,0.07)] min-h-52 block">
-                <div className={`absolute inset-0 bg-gradient-to-br ${wideCard.gradient} opacity-100 group-hover:opacity-100 transition-opacity duration-500`} />
+        {/* Row 1: Wide card (Web Dev) + App Dev */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 mb-4 sm:mb-5">
+          <Link
+            ref={wideRef}
+            href={wideCardData.href}
+            className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/8 hover:border-[#2de8b0]/30 bg-[#060d0b] transition-all duration-500 hover:shadow-[0_0_50px_rgba(45,232,176,0.07)] min-h-52 lg:col-span-2"
+          >
+            <div className={`absolute inset-0 bg-gradient-to-br ${wideCardData.gradient} opacity-100 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                {/* Decorative number */}
-                <span className="absolute bottom-2 right-4 text-[130px] font-black text-white/[0.025] leading-none pointer-events-none select-none">
-                  {wideCard.number}
-                </span>
+            <span className="absolute bottom-2 right-4 text-[130px] font-black text-white/[0.025] leading-none pointer-events-none select-none">
+              {wideCardData.number}
+            </span>
 
-                <div className="relative z-10 flex flex-col justify-between p-7 sm:p-8 lg:p-10 w-full">
-                  <div className="flex items-start justify-between mb-6">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                      style={{ background: `${wideCard.accentColor}18`, color: wideCard.accentColor }}
-                    >
-                      {wideCard.icon}
-                    </div>
-                    <span className="px-2.5 py-1 rounded-full text-black text-[10px] font-bold uppercase tracking-wider"
-                      style={{ background: wideCard.accentColor }}>
-                      {wideCard.badge}
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">{wideCard.title}</h3>
-                    <p className="text-white/45 text-sm sm:text-base leading-relaxed max-w-lg mb-5">{wideCard.desc}</p>
-
-                    <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                      <span className="text-sm font-semibold" style={{ color: wideCard.accentColor }}>{wideCard.cta}</span>
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" style={{ color: wideCard.accentColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </div>
-                  </div>
+            <div className="relative z-10 flex flex-col justify-between p-7 sm:p-8 lg:p-10 w-full h-full">
+              <div className="flex items-start justify-between mb-6">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                  style={{ background: `${wideCardData.accentColor}18`, color: wideCardData.accentColor }}
+                >
+                  {wideCardData.icon}
                 </div>
-              </Link>
+                <span className="px-2.5 py-1 rounded-full text-black text-[10px] font-bold uppercase tracking-wider"
+                  style={{ background: wideCardData.accentColor }}>
+                  {wideCardData.badge}
+                </span>
+              </div>
+
+              <div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 tracking-tight">{wideCardData.title}</h3>
+                <p className="text-white/45 text-sm sm:text-base leading-relaxed max-w-lg mb-5">{wideCardData.desc}</p>
+
+                <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                  <span className="text-sm font-semibold" style={{ color: wideCardData.accentColor }}>{wideCardData.cta}</span>
+                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" style={{ color: wideCardData.accentColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </div>
+              </div>
             </div>
+          </Link>
+
+          {/* App Dev */}
+          <ServiceCard
+            service={regularCardsData[0]}
+            refCb={(el) => (cardsRef.current[0] = el)}
+          />
+        </div>
+
+        {/* Row 2: UI/UX + SEO + Logo Design */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+          {regularCardsData.slice(1).map((service, i) => (
+            <ServiceCard
+              key={service.number}
+              service={service}
+              refCb={(el) => (cardsRef.current[i + 1] = el)}
+            />
           ))}
         </div>
 
@@ -201,45 +255,5 @@ export default function Services() {
         </div>
       </div>
     </section>
-  );
-}
-
-function ServiceCard({ service, refCb }) {
-  return (
-    <div ref={refCb}>
-      <Link
-        href={service.href}
-        className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/8 hover:border-white/20 bg-[#060d0b] transition-all duration-500 hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] min-h-52 sm:min-h-64 block"
-        style={{ "--accent": service.accentColor }}
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-80 group-hover:opacity-100 transition-opacity duration-500`} />
-
-        {/* Decorative number */}
-        <span className="absolute bottom-2 right-3 text-[100px] font-black text-white/[0.025] leading-none pointer-events-none select-none">
-          {service.number}
-        </span>
-
-        <div className="relative z-10 flex flex-col justify-between p-6 sm:p-7 h-full">
-          <div
-            className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 shrink-0"
-            style={{ background: `${service.accentColor}18`, color: service.accentColor }}
-          >
-            {service.icon}
-          </div>
-
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 tracking-tight">{service.title}</h3>
-            <p className="text-white/40 text-sm leading-relaxed mb-4">{service.desc}</p>
-
-            <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-              <span className="text-xs font-semibold" style={{ color: service.accentColor }}>{service.cta}</span>
-              <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" style={{ color: service.accentColor }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </div>
   );
 }
