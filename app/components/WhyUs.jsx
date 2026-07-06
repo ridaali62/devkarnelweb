@@ -1,3 +1,13 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 const reasons = [
   {
     icon: (
@@ -56,13 +66,44 @@ const reasons = [
 ];
 
 export default function WhyUs() {
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1, y: 0, duration: 0.7, ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 85%", once: true },
+        }
+      );
+
+      cardsRef.current.forEach((card, i) => {
+        if (!card) return;
+        gsap.fromTo(
+          card,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1, y: 0, duration: 0.6, delay: i * 0.07, ease: "power3.out",
+            scrollTrigger: { trigger: card, start: "top 88%", once: true },
+          }
+        );
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="relative w-full py-20 lg:py-28 bg-[#010504]">
+    <section ref={sectionRef} className="relative w-full py-20 lg:py-28 bg-[#010504]">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-14">
+        <div ref={headerRef} className="text-center mb-14">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-white/60 uppercase tracking-wider font-medium">
             <svg className="w-3.5 h-3.5 text-[#2de8b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -82,6 +123,7 @@ export default function WhyUs() {
           {reasons.map((r, i) => (
             <div
               key={i}
+              ref={(el) => (cardsRef.current[i] = el)}
               className="group flex flex-col gap-4 p-6 rounded-xl border border-white/8 bg-white/3 hover:border-[#2de8b0]/30 hover:bg-[#2de8b0]/3 transition-all duration-300"
             >
               <div className="w-11 h-11 rounded-lg bg-[#2de8b0]/10 text-[#2de8b0] flex items-center justify-center group-hover:bg-[#2de8b0]/20 transition-colors duration-300">
