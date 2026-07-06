@@ -6,17 +6,17 @@ import { urbanist } from "@/app/fonts";
 import Link from "next/link";
 import HeroCarousel from "@/app/components/shared/HeroCarousel";
 
-const featureTags = ["Brand Identity", "Logo Systems", "Brand Guidelines", "Print Ready"];
+const featureTags = ["Figma Expert", "User Research", "Design Systems", "Prototyping"];
 
-const logoImages = [
-  "https://images.unsplash.com/photo-1636622433525-127afdf3662d?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80",
-  "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?auto=format&fit=crop&w=800&q=80",
+const uiuxImages = [
+  "/images/service_images/uiux.png",
   "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=800&q=80",
+  "https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&w=800&q=80",
 ];
 
-export default function LogoHero() {
+export default function UIUXHero() {
   const headingLine1Ref = useRef(null);
   const headingLine2Ref = useRef(null);
   const headingLine3Ref = useRef(null);
@@ -73,18 +73,18 @@ export default function LogoHero() {
         {/* Left: Text */}
         <div className="w-full lg:w-2/5">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
-            <span ref={headingLine1Ref} className="block">A Brand That</span>
+            <span ref={headingLine1Ref} className="block">Design That Converts.</span>
             <span ref={headingLine2Ref} className="block bg-linear-to-r from-white to-white/60 bg-clip-text text-transparent">
-              People
+              Experiences That
             </span>
             <span ref={headingLine3Ref} className="block text-[#2de8b0]">
-              Remember.
+              Stick.
             </span>
           </h1>
 
           <p ref={subRef} className="text-white/60 text-sm sm:text-base leading-relaxed mb-8 lg:mb-10 max-w-md">
-            We craft timeless logos and brand identities that capture the essence of your business —
-            built to make a lasting impression across every touchpoint.
+            We craft intuitive, beautiful digital experiences backed by real user research —
+            turning visitors into loyal customers through purposeful, conversion-driven design.
           </p>
 
           <div ref={btnsRef} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
@@ -95,19 +95,19 @@ export default function LogoHero() {
               className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-bold text-black/80 transition-all duration-200 hover:brightness-110 active:scale-95 whitespace-nowrap text-center"
               style={{ backgroundColor: "#2de8b0", boxShadow: "0 8px 30px rgba(45,232,176,0.25)" }}
             >
-              Start Your Brand
+              Start a Design Project
             </a>
             <Link
               href="/case-studies"
               className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-semibold text-white/80 hover:text-white transition-all duration-200 active:scale-95 border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 whitespace-nowrap text-center"
             >
-              View Portfolio
+              View Our Work
             </Link>
           </div>
         </div>
 
-        {/* Right: Branding Carousel */}
-        <HeroCarousel featureTags={featureTags} images={logoImages} />
+        {/* Right: Design Carousel */}
+        <HeroCarousel featureTags={featureTags} images={uiuxImages} />
       </div>
 
       <div

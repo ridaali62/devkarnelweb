@@ -1,17 +1,33 @@
 @import "tailwindcss";
 
-  :root {
-    scroll-behavior: smooth;
-    background-color: #0000;
-  }
+:root {
+  scroll-behavior: smooth;
+}
 
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
 
+::selection {
+  background-color: rgba(45, 232, 176, 0.3);
+  color: #fff;
+}
 
+::-webkit-scrollbar {
+  width: 6px;
+}
 
+::-webkit-scrollbar-track {
+  background: #010504;
+}
 
+::-webkit-scrollbar-thumb {
+  background: rgba(45, 232, 176, 0.3);
+  border-radius: 3px;
+}
 
-
-
-
-
-
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(45, 232, 176, 0.5);
+}

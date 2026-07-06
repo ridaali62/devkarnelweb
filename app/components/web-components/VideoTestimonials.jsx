@@ -51,7 +51,7 @@ const VideoTestimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className={`relative py-24 px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
+      className={`relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
       style={{
         background: `
           radial-gradient(circle at 0% 0%, rgba(0,0,0,1) 0%, transparent 70%),
@@ -66,10 +66,10 @@ const VideoTestimonials = () => {
         <span className="inline-block px-4 py-1.5 rounded-full border border-white/20 bg-white/5 text-white/70 text-xs font-medium uppercase tracking-widest mb-6">
           Video Testimonials
         </span>
-        <h2 className="text-white text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6 tracking-tight">
           Hear from our <span className="text-[#2de8b0]">happy clients</span>
         </h2>
-        <p className="text-white/50 text-lg max-w-xl mx-auto leading-relaxed">
+        <p className="text-white/50 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
           Real stories. Real experiences. Real satisfaction.
         </p>
       </div>
@@ -114,7 +114,7 @@ const VideoTestimonials = () => {
 
                 {/* Video Info Overlay */}
                 <div className="absolute bottom-8 left-8 text-left">
-                  <h3 className="text-white text-2xl font-bold mb-1">AfterRender Testimonials</h3>
+                  <h3 className="text-white text-2xl font-bold mb-1">Devskarnel Client Testimonials</h3>
                   <p className="text-white/60 text-sm">Watch the success stories</p>
                 </div>
               </>

@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "i.pravatar.cc",
-      "images.unsplash.com",
-      "res.cloudinary.com", // ✅ correct Unsplash domain
+    remotePatterns: [
+      { hostname: "i.pravatar.cc" },
+      { hostname: "images.unsplash.com" },
+      { hostname: "res.cloudinary.com" },
+      { hostname: "randomuser.me" },
     ],
   },
 };

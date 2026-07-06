@@ -10,7 +10,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const faqData = [
+const defaultFaqData = [
   {
     question: "How much does a website cost?",
     answer: "Simple sites start at $499. More complex builds are quoted based on your specific needs. We also offer monthly payment plans starting at $99/mo so there’s no large upfront cost required.",
@@ -37,8 +37,9 @@ const faqData = [
   },
 ];
 
-const WebFAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+const WebFAQ = ({ title = "Common Questions", subtitle = "Support", faqData = null }) => {
+  const items = faqData || defaultFaqData;
+  const [activeIndex, setActiveIndex] = useState(-1);
   const containerRef = useRef(null);
   const itemsRef = useRef([]);
 
@@ -94,7 +95,7 @@ const WebFAQ = () => {
   return (
     <section
       ref={containerRef}
-      className={`relative py-32 px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
+      className={`relative py-16 sm:py-20 lg:py-28 px-4 sm:px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
        style={{
         background: `
           radial-gradient(circle at 0% 0%, rgba(0,0,0,1) 0%, transparent 70%),
@@ -108,14 +109,14 @@ const WebFAQ = () => {
     >
       <div className="max-w-3xl w-full z-10">
         <div className="text-center mb-16">
-          <p className="text-[#2de8b0] text-sm font-bold uppercase tracking-[0.4em] mb-4">Support</p>
-          <h2 className="text-white text-4xl md:text-5xl font-bold leading-tight">
-            Common Questions
+          <p className="text-[#2de8b0] text-sm font-bold uppercase tracking-[0.4em] mb-4">{subtitle}</p>
+          <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+            {title}
           </h2>
         </div>
 
         <div className="space-y-4">
-          {faqData.map((item, index) => (
+          {items.map((item, index) => (
             <div
               key={index}
               ref={(el) => (itemsRef.current[index] = el)}
@@ -127,7 +128,7 @@ const WebFAQ = () => {
                 onClick={() => toggleAccordion(index)}
                 className="w-full p-6 text-left flex justify-between items-center gap-4 cursor-pointer"
               >
-                <span className={`text-lg font-semibold transition-colors duration-300 ${
+                <span className={`text-base sm:text-lg font-semibold transition-colors duration-300 ${
                   activeIndex === index ? "text-[#2de8b0]" : "text-white/80"
                 }`}>
                   {item.question}

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { Plus, ArrowUpRight, Zap, Globe, ShieldCheck , ArrowBigRight , ArrowBigDown } from "lucide-react";
+import { ArrowUpRight, Zap, Globe, ShieldCheck, ArrowBigRight, ArrowBigDown } from "lucide-react";
 import { urbanist } from "@/app/fonts";
 
 if (typeof window !== "undefined") {
@@ -34,7 +34,10 @@ const steps = [
   },
 ];
 
-export default function HorizontalAutomationWorkflow() {
+export default function HorizontalAutomationWorkflow({
+  heading = "High-Performance Digital Solutions",
+  description = "As a results-driven agency, we build digital products that connect, convert, and scale.",
+}) {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -57,7 +60,7 @@ export default function HorizontalAutomationWorkflow() {
   return (
     <section
       ref={containerRef}
-      className={`relative min-h-100 py-32 px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
+      className={`relative py-16 sm:py-20 lg:py-28 px-4 sm:px-6 flex flex-col items-center overflow-hidden ${urbanist.className}`}
       style={{
                 background: `
     /* 1. TOP-LEFT CORNER SHADOW */
@@ -86,11 +89,11 @@ export default function HorizontalAutomationWorkflow() {
             }}
     >
       {/* 1. Header Area */}
-      <div className="max-w-4xl text-center mb-20 workflow-step">
+      <div className="max-w-4xl text-center mb-12 lg:mb-20 workflow-step">
         <p className="text-[#2de8b0] text-base font-bold uppercase tracking-[0.4em] mb-4">Proudly Devskarnel</p>
-        <h2 className="text-white text-4xl md:text-5xl font-bold mb-6">High-Performance Digital Solutions</h2>
-        <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed">
-          As a results-driven web design company, we build websites that connect, convert, and scale.
+        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold mb-6">{heading}</h2>
+        <p className="text-white/60 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          {description}
         </p>
       </div>
 
@@ -99,12 +102,12 @@ export default function HorizontalAutomationWorkflow() {
         <div className="hidden lg:block absolute top-27.5 left-0 right-0 h-px bg-white/10 z-0" />
 
         {/* 3. Steps Container - Horizontal Flex */}
-        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-8 lg:gap-4 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start justify-center gap-4 lg:gap-0 relative z-10">
           {steps.map((step, idx) => (
             <div key={idx} className="workflow-step flex flex-col lg:flex-row items-center w-full lg:w-auto">
               
               {/* Card Container */}
-              <div className="w-full max-w-87.5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl group hover:border-[#2de8b0]/50 transition-all duration-500 hover:-translate-y-2 flex flex-col min-h-55">
+              <div className="w-full max-w-sm bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl group hover:border-[#2de8b0]/50 transition-all duration-500 hover:-translate-y-2 flex flex-col">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <div className={`w-9 h-9 rounded-xl ${step.accent} flex items-center justify-center`}>
@@ -122,7 +125,7 @@ export default function HorizontalAutomationWorkflow() {
               </div>
 
               {/* Plus Connector (Horizontal gap) */}
-              <div className="flex items-center justify-center p-6 lg:px-4">
+              <div className="flex items-center justify-center py-2 lg:px-4">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center  z-20 ">
                   <ArrowBigRight size={26} className="hidden lg:block text-white/80" strokeWidth={3} />
                   <ArrowBigDown size={26} className="block lg:hidden text-white/80" strokeWidth={3} />
@@ -133,7 +136,7 @@ export default function HorizontalAutomationWorkflow() {
 
           {/* 4. Final Branching Card */}
           <div className="workflow-step w-full lg:w-auto">
-             <div className="w-full max-w-100 bg-white/10 backdrop-blur-2xl border border-[#2de8b0]/40 rounded-2xl p-6 relative overflow-hidden group min-h-55">
+             <div className="w-full max-w-sm bg-white/10 backdrop-blur-2xl border border-[#2de8b0]/40 rounded-2xl p-6 relative overflow-hidden group">
                 <div className="absolute -top-4 -right-4 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Zap size={100} className="text-[#2de8b0]" />
                 </div>

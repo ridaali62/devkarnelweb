@@ -1,20 +1,19 @@
-import CaseStudies from "./components/CaseStudies";
 import Hero from "./components/Hero";
-import Contact from "./components/Contact";
-
 import Services from "./components/Services";
+import Portfolio from "./components/layout/Portfolio";
+import WhyUs from "./components/WhyUs";
 import Testimonials from "./components/Testimonials";
+import Contact from "./components/Contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* <CaseStudies/> */}
-      <Services/>
-      <Testimonials/>
-      <Contact/>
-
-
+      <Services />
+      <Portfolio />
+      <WhyUs />
+      <Testimonials />
+      <Contact />
     </>
   );
 }

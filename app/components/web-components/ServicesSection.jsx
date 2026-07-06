@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Link from "next/link";
 import { urbanist } from "@/app/fonts";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const services = [
+const defaultServices = [
     {
         title: "Corporate & Business",
         desc: "Make a powerful first impression. We build polished, credibility-building sites that communicate brand values.",
@@ -66,7 +67,12 @@ const services = [
     },
 ];
 
-export default function ServicesSection() {
+export default function ServicesSection({
+    subtitle = "Our Expertise",
+    title = "Tailored digital solutions for modern brands.",
+    services = null,
+}) {
+    const items = services || defaultServices;
     const containerRef = useRef(null);
     const itemsRef = useRef([]);
 
@@ -119,23 +125,24 @@ export default function ServicesSection() {
        65-100% is solid black (bottom) */
     linear-gradient(180deg, #000000 0%, #000000 35%, #0F7C6E 50%, #000000 65%, #000000 100%)
   `
-            }} className={`bg-black py-24 px-6 ${urbanist.className}`}>
-            <div className="max-w-400 mx-auto" ref={containerRef}>
+            }} className={`bg-black py-16 sm:py-24 ${urbanist.className}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={containerRef}>
                 {/* Header Text */}
                 <div className="mb-16">
-                    <h2 className="text-[#b4f481] text-sm font-bold uppercase tracking-[0.3em] mb-4">Our Expertise</h2>
-                    <p className="text-white text-4xl md:text-5xl font-bold max-w-2xl leading-tight">
-                        Tailored digital solutions for modern brands.
+                    <h2 className="text-[#b4f481] text-sm font-bold uppercase tracking-[0.3em] mb-4">{subtitle}</h2>
+                    <p className="text-white text-3xl sm:text-4xl md:text-5xl font-bold max-w-2xl leading-tight">
+                        {title}
                     </p>
                 </div>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {services.map((service, index) => (
-                        <div
+                    {items.map((service, index) => (
+                        <Link
                             key={index}
+                            href="/contact"
                             ref={(el) => (itemsRef.current[index] = el)}
-                            className="group relative p-8 rounded-3xl bg-white/3 border border-white/10 hover:border-[#b4f481]/30 transition-all duration-500 overflow-hidden"
+                            className="group relative p-8 rounded-3xl bg-white/3 border border-white/10 hover:border-[#b4f481]/30 transition-all duration-500 overflow-hidden block"
                         >
                             {/* Subtle Gradient Hover Effect */}
                             <div className="absolute inset-0 bg-linear-to-br from-[#b4f481]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -155,13 +162,13 @@ export default function ServicesSection() {
                                 </p>
                             </div>
 
-                            {/* Corner Accent */}
-                            <div className="absolute bottom-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                            {/* Corner Arrow → /contact */}
+                            <div className="absolute bottom-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                 <svg className="w-5 h-5 text-[#b4f481]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>

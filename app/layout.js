@@ -1,17 +1,23 @@
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import CustomCursor from "./components/CustomCursor";
+import { urbanist } from "./fonts";
 import "./globals.css";
 
+const siteUrl = "https://devskarnel.com";
+const siteName = "Devskarnel";
+const siteDescription =
+  "Devskarnel is a web development agency building fast, SEO-optimized websites using Next.js, React, and MERN stack.";
+
 export const metadata = {
-  metadataBase: new URL("https://devskarnel.com"),
+  metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Devskarnel – Web Development Agency",
-    template: "%s | Devskarnel",
+    default: `${siteName} – Web Development Agency`,
+    template: `%s | ${siteName}`,
   },
 
-  description:
-    "Devskarnel is a web development agency building fast, SEO-optimized websites using Next.js, React, and MERN stack.",
+  description: siteDescription,
 
   keywords: [
     "Devskarnel",
@@ -26,12 +32,11 @@ export const metadata = {
     "Full-Stack Development",
     "WordPress Development",
     "Shopify Development",
-    
   ],
 
-  authors: [{ name: "Devskarnel" }],
-  creator: "Devskarnel",
-  publisher: "Devskarnel",
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
 
   robots: {
     index: true,
@@ -43,18 +48,18 @@ export const metadata = {
   },
 
   openGraph: {
-    title: "Devskarnel – Web Development Agency",
+    title: `${siteName} – Web Development Agency`,
     description:
       "We build fast, scalable, and SEO-friendly web applications using Next.js and MERN stack.",
-    url: "https://devskarnel.com/",
-    siteName: "Devskarnel",
-    images:[
+    url: siteUrl,
+    siteName,
+    images: [
       {
-        url : 'favicon.ico',
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: 'Devskarnel - Web Development Agency',
-      }
+        alt: `${siteName} - Web Development Agency`,
+      },
     ],
     locale: "en_US",
     type: "website",
@@ -62,58 +67,49 @@ export const metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Devskarnel",
+    title: siteName,
     description: "Next.js & MERN Web Development Agency",
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.png",
   },
 };
 
-export default function RootLayout({ children }) {
-  const organizationSchema = {
+const jsonLd = [
+  {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Devskarnel",
-    url: "https://devskarnel.com",
-    logo: "https://devskarnel.com/logo.png",
-  };
-
-  const websiteSchema = {
+    name: siteName,
+    url: siteUrl,
+    logo: `${siteUrl}/logo.png`,
+  },
+  {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Devskarnel",
+    name: siteName,
     alternateName: "Devskarnel Web Solutions",
-    url: "https://devskarnel.com/",
-  };
+    url: siteUrl,
+  },
+];
 
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="">
-
-        <h1 className="hidden">
-          Devskarnel Web Development Agency - Next.js & MERN Experts
-        </h1>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
-          }}
-        />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema),
-          }}
-        />
-      <Navbar />
-
-
+      <head>
+        {jsonLd.map((schema, i) => (
+          <script
+            key={i}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          />
+        ))}
+      </head>
+      <body className={`bg-[#010504] text-white antialiased ${urbanist.className}`} suppressHydrationWarning>
+        <CustomCursor />
+        <Navbar />
         {children}
-      <Footer/>
+        <Footer />
       </body>
     </html>
   );

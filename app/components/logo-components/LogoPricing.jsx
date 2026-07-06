@@ -121,7 +121,7 @@ export default function LogoPricing() {
                 <div ref={priceRef}>
                     <div className="flex items-baseline gap-1">
                         <span className="text-white text-5xl font-bold">$ 49.99</span>
-                        <span className="text-white/40 text-lg">/mo</span>
+                        <span className="text-white/40 text-lg">one-time</span>
                     </div>
                     <p className="mt-4 text-white/60 text-base leading-relaxed">
                         Make your brand instantly recognizable.

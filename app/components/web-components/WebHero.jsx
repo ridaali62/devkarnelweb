@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
-import { urbanist } from "@/app/fonts"; // Adjust path as needed
+import Link from "next/link";
+import { urbanist } from "@/app/fonts";
 
 // Carousel Images - trailing spaces removed
 const carouselImages = [
@@ -270,10 +271,10 @@ export default function WebHero() {
       <div className="absolute inset-0 w-full h-full opacity-20" style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(45,232,176,0.1) 0%, transparent 70%)" }} />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-400 mx-auto px-6 sm:px-10 flex flex-col lg:flex-row items-center gap-16 lg:gap-12 py-20 mt-10">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 pt-28 pb-16 lg:pt-36 lg:pb-20">
 
-        <div className="w-full lg:w-3/5">
-          <h1 className="text-4xl sm:text-5xl lg:text-[4.8rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
+        <div className="w-full lg:w-2/5">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.2rem] font-bold leading-[1.1] tracking-tight text-white mb-8">
             <span ref={headingLine1Ref} className="block">Architecting high-end</span>
             <span ref={headingLine2Ref} className="block bg-linear-to-r from-white to-white/60 bg-clip-text text-transparent">
               Scalable Websites &
@@ -283,25 +284,28 @@ export default function WebHero() {
             </span>
           </h1>
 
-          <p ref={subRef} className="text-white/60 text-base sm:text-[0.95rem] leading-relaxed mb-10 max-w-md">
+          <p ref={subRef} className="text-white/60 text-sm sm:text-base leading-relaxed mb-8 lg:mb-10 max-w-md">
             We build lightning-fast web applications using Next.js and GSAP.
             From bespoke design systems to complex e-commerce engines, we prioritize
             performance, SEO, and conversion-driven user experiences.
           </p>
 
           <div ref={btnsRef} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <button
-              className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-bold text-black/80 transition-all duration-200 hover:brightness-110 active:scale-95 whitespace-nowrap"
-              style={{
-                backgroundColor: "#2de8b0",
-                boxShadow: "0 8px 30px rgba(45,232,176,0.25)",
-              }}
+            <a
+              href="https://calendly.com/afterrenderagency/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-bold text-black/80 transition-all duration-200 hover:brightness-110 active:scale-95 whitespace-nowrap text-center"
+              style={{ backgroundColor: "#2de8b0", boxShadow: "0 8px 30px rgba(45,232,176,0.25)" }}
             >
               Start Your Project
-            </button>
-            <button className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-semibold text-white/80 hover:text-white transition-all duration-200 active:scale-95 border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 whitespace-nowrap">
+            </a>
+            <Link
+              href="/case-studies"
+              className="cursor-pointer px-8 py-3.5 rounded-lg text-[1rem] font-semibold text-white/80 hover:text-white transition-all duration-200 active:scale-95 border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 whitespace-nowrap text-center"
+            >
               View Case Studies
-            </button>
+            </Link>
           </div>
         </div>
 
